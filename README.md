@@ -1,176 +1,102 @@
-# Payment Text Processing System
+# Payment Application
 
 ## Overview
 
-The Payment Text Processing System is a specialized tool designed to analyze, process, and manage payment-related text data. This system efficiently handles various text formats containing payment information, extracts relevant data, and provides structured output for further processing or analysis.
+This is a modern payment application built with the Quasar Framework (Vue.js). It provides a user interface for handling various payment-related operations, including card payments, displaying payment summaries, and managing processing fees.
 
 ## Features
 
-- **Text Parsing**: Extract payment information from unstructured text
-- **Format Recognition**: Automatically identify and process multiple text formats
-- **Data Validation**: Verify payment details against predefined rules
-- **Batch Processing**: Handle multiple files simultaneously
-- **Export Capabilities**: Generate reports in various formats (CSV, JSON, XML)
-- **Audit Trail**: Maintain logs of all processing activities
-- **Error Handling**: Robust error detection and reporting
+*   **Card Payment Form**: Securely input and process card details.
+*   **Payment Summary**: View a detailed breakdown of charges.
+*   **Processing Fee Dialog**: Handle and display processing fees.
+*   **Review Payment Dialog**: Confirm payment details before finalization.
+*   **Location Selector**: (If applicable, based on `LocationSelector.vue`) Select payment locations or regions.
+*   **Internationalization (i18n)**: Support for multiple languages (currently English, based on `src/i18n/en.json`).
+*   **State Management**: Utilizes Pinia for efficient state management.
+*   **API Integration**: Configured with Axios for making HTTP requests to backend services.
 
-## System Requirements
+## Project Structure
 
-- Python 3.8+
-- Required libraries (see `requirements.txt`)
-- Minimum 4GB RAM
-- 100MB available disk space
+*   `src/boot/`: Quasar boot files for initial setup (Axios, i18n, Pinia).
+*   `src/components/`: Reusable Vue components for UI elements (e.g., `CardPaymentForm.vue`, `PaymentSummary.vue`).
+*   `src/css/`: Application-specific and Quasar variable SCSS files for styling.
+*   `src/i18n/`: Language translation files.
+*   `src/layouts/`: Main application layout.
+*   `src/pages/`: Main application pages (e.g., `PaymentPage.vue`, `IndexPage.vue`).
+*   `src/router/`: Vue Router configuration for navigation.
+*   `src/stores/`: Pinia stores for application state.
 
 ## Installation
 
 ### Prerequisites
 
-Ensure you have Python 3.8 or higher installed:
-
-```bash
-python --version
-```
+*   Node.js (LTS version recommended)
+*   npm or pnpm (pnpm is used in `pnpm-lock.yaml`)
 
 ### Setup
 
-1. Clone the repository:
+1.  **Clone the repository:**
 
-```bash
-git clone https://github.com/yourusername/payment-text.git
-cd payment-text
-```
+    ```bash
+    git clone <repository_url>
+    cd payment-text
+    ```
 
-2. Install dependencies:
+2.  **Install dependencies:**
 
-```bash
-pip install -r requirements.txt
-```
-
-3. Configure the application:
-
-```bash
-cp config.example.yml config.yml
-# Edit config.yml with your settings
-```
+    If using pnpm:
+    ```bash
+    pnpm install
+    ```
+    If using npm:
+    ```bash
+    npm install
+    ```
 
 ## Usage
 
-### Basic Usage
+### Development Server
 
-Process a single payment text file:
-
-```bash
-python process.py --input path/to/payment_file.txt
-```
-
-### Batch Processing
-
-Process multiple files:
+To run the application in development mode with hot-reloading:
 
 ```bash
-python process.py --input path/to/directory --batch
+quasar dev
 ```
 
-### Output Options
+This will typically start the application at `http://localhost:8080`.
 
-Specify output format:
+### Build for Production
+
+To build the application for production deployment:
 
 ```bash
-python process.py --input path/to/payment_file.txt --output-format json
+quasar build
 ```
 
-Save results to file:
-
-```bash
-python process.py --input path/to/payment_file.txt --output results.json
-```
+The compiled assets will be located in the `dist/` directory.
 
 ## Configuration
 
-The system can be configured through the `config.yml` file:
-
-```yaml
-processing:
-  max_batch_size: 100
-  timeout: 30
-
-validation:
-  strict_mode: true
-  allowed_currencies:
-    - USD
-    - EUR
-    - GBP
-
-output:
-  default_format: json
-  include_metadata: true
-```
-
-## Data Format
-
-The system accepts payment text in various formats, including:
-
-### Simple Format
-
-```
-PAYMENT
-Amount: 100.00
-Currency: USD
-Date: 2023-07-18
-Reference: INV-12345
-```
-
-### Structured Format
-
-```
-<payment>
-  <amount>100.00</amount>
-  <currency>USD</currency>
-  <date>2023-07-18</date>
-  <reference>INV-12345</reference>
-</payment>
-```
-
-## API Reference
-
-The system provides a Python API for integration with other applications:
-
-```python
-from payment_text import PaymentProcessor
-
-processor = PaymentProcessor(config_path='config.yml')
-results = processor.process_file('path/to/payment_file.txt')
-print(results.summary())
-```
-
-## Troubleshooting
-
-Common issues and solutions:
-
-- **Parse Errors**: Check that your input files match one of the supported formats
-- **Validation Failures**: Verify that payment details meet the validation rules in config.yml
-- **Performance Issues**: For large files, increase the memory allocation in config.yml
+*   **Quasar Configuration**: `quasar.config.js` for framework-specific settings.
+*   **ESLint**: `eslint.config.js` for code linting rules.
+*   **Prettier**: `.prettierrc.json` for code formatting.
+*   **PostCSS**: `postcss.config.js` for CSS post-processing.
 
 ## Contributing
 
-Contributions are welcome! Please follow these steps:
+Contributions are welcome! Please follow standard Git flow:
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+1.  Fork the repository.
+2.  Create a new branch (`git checkout -b feature/your-feature-name`).
+3.  Make your changes.
+4.  Commit your changes (`git commit -m 'feat: Add new feature'`).
+5.  Push to the branch (`git push origin feature/your-feature-name`).
+6.  Open a Pull Request.
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+(Add your license information here, e.g., MIT License)
 
 ## Contact
 
-Project Maintainer - [pigpig336699@gmail.com](mailto:pigpig336699@gmail.com)
-
-## Acknowledgements
-
-- List any libraries or tools used
-- Credits to contributors
-- Any other acknowledgements
+(Add contact information here, e.g., your email or project maintainer's email)
